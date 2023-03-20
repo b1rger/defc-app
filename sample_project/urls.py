@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import path
 from rest_framework import routers
 from django.contrib import admin
-from orea.settings import base
+from . import settings
 from defcdb import views
 from defcdb import api_views
 import autocomplete_light.shortcuts as al
@@ -88,26 +89,26 @@ router.register(r'Finds', api_views.FindsViewSet)
 router.register(r'Interpretation', api_views.InterpretationViewSet)
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^defcdb/', include('defcdb.urls', namespace='defcdb')),
-    url(r'^geolocation/', include('geolocation.urls', namespace="geolocation")),
-    url(r'^login/$', views.user_login, name='user_login'),
-    url(r'^accounts/login/$', views.user_login, name='user_login'),
-    url(r'^logout/$', views.user_logout, name='user_logout'),
-    url(r'^autocomplete/', include('autocomplete_light.urls')),
-    url(r'^', include('webpage.urls', namespace='webpage')),
-    url(r'^bib/', include('bib.urls', namespace='bib')),
-    url(
+    path(r'^admin/', include(admin.site.urls)),
+    path(r'^api/', include(router.urls)),
+    path(r'^api-auth/', include('rest_framework.urls')),
+    path(r'^defcdb/', include('defcdb.urls', namespace='defcdb')),
+    path(r'^geolocation/', include('geolocation.urls', namespace="geolocation")),
+    path(r'^login/$', views.user_login, name='user_login'),
+    path(r'^accounts/login/$', views.user_login, name='user_login'),
+    path(r'^logout/$', views.user_logout, name='user_logout'),
+    path(r'^autocomplete/', include('autocomplete_light.urls')),
+    path(r'^', include('webpage.urls', namespace='webpage')),
+    path(r'^bib/', include('bib.urls', namespace='bib')),
+    path(
         r'^media/(?P<path>.*)$',
         'django.views.static.serve',
-        {'document_root': base.MEDIA_ROOT, }, name='media_root_url'
+        {'document_root': settings.MEDIA_ROOT, }, name='media_root_url'
     ),
-    url(r'^image_gallery/', include('images_metadata.urls', namespace="image_gallery")),
-    url(r'^publicrecords/', include('publicrecords.urls', namespace="publicrecords")),
-    url(r'^3Dmodels/', include('threedmodels.urls', namespace="3Dmodels")),
-    url(r'^browsing/', include('browsing.urls', namespace='browsing')),
-    url(r'^datamodel/', include('django_spaghetti.urls', namespace="datamodel")),
-    url(r'^sparql/', include('sparql.urls', namespace='sparql')),
+    path(r'^image_gallery/', include('images_metadata.urls', namespace="image_gallery")),
+    path(r'^publicrecords/', include('publicrecords.urls', namespace="publicrecords")),
+    path(r'^3Dmodels/', include('threedmodels.urls', namespace="3Dmodels")),
+    path(r'^browsing/', include('browsing.urls', namespace='browsing')),
+    path(r'^datamodel/', include('django_spaghetti.urls', namespace="datamodel")),
+    path(r'^sparql/', include('sparql.urls', namespace='sparql')),
 ]
