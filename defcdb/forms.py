@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django import forms
-import autocomplete_light
+import dal
 #autocomplete_light.autodiscover()
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Field
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 from .autocomplete_light_registry import (BookAutocomplete, InstitutionAutocomplete,
 	ProjectleaderAutocomplete, NameAutocomplete, ISOAutocomplete)
 from .models import Area, ResearchEvent, Site, Finds, Interpretation, DC_researchevent_institution, Name
