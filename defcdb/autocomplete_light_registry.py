@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import autocomplete_light
+import autocomplete_light.shortcuts as autocomplete_light
 import re, requests, json
 from bib.models import Book
 from .models import DC_researchevent_institution, ResearchEvent, Name

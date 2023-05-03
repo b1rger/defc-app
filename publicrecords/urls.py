@@ -3,6 +3,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "publicrecords"
+
 urlpatterns = [
     url(r'^site/$', views.SiteListView.as_view(), name='site_list'),
     url(r'^site/detail/(?P<pk>[0-9]+)$', views.SiteDetail.as_view(), name='site_detail'),

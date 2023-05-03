@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "browsing"
+
 urlpatterns = [
     url(r'download-sites/$', views.SiteDownloadView.as_view(), name='download-sites'),
     url(r'download-areas/$', views.AreaDownloadView.as_view(), name='download-areas'),

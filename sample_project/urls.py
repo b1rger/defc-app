@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import include
 from django.urls import path
+from django.views.static import serve
 from rest_framework import routers
 from django.contrib import admin
 from . import settings
@@ -10,7 +11,7 @@ import autocomplete_light.shortcuts as al
 al.autodiscover()
 
 router = routers.DefaultRouter()
-router.register(r'geojson', api_views.GeoJsonViewSet, base_name='places')
+router.register(r'geojson', api_views.GeoJsonViewSet, basename='places')
 router.register(r'dc_finds_lithics_raw_material', api_views.DC_finds_lithics_raw_materialViewSet)
 router.register(
     r'dc_finds_lithics_retouched_tools', api_views.DC_finds_lithics_retouched_toolsViewSet
@@ -89,7 +90,7 @@ router.register(r'Finds', api_views.FindsViewSet)
 router.register(r'Interpretation', api_views.InterpretationViewSet)
 
 urlpatterns = [
-    path(r'^admin/', include(admin.site.urls)),
+    path(r'^admin/', admin.site.urls),
     path(r'^api/', include(router.urls)),
     path(r'^api-auth/', include('rest_framework.urls')),
     path(r'^defcdb/', include('defcdb.urls', namespace='defcdb')),
@@ -102,7 +103,7 @@ urlpatterns = [
     path(r'^bib/', include('bib.urls', namespace='bib')),
     path(
         r'^media/(?P<path>.*)$',
-        'django.views.static.serve',
+        serve,
         {'document_root': settings.MEDIA_ROOT, }, name='media_root_url'
     ),
     path(r'^image_gallery/', include('images_metadata.urls', namespace="image_gallery")),

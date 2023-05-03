@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "threedmodels"
+
 urlpatterns = [
     url(r'^$', views.ThreedmodelListView.as_view(), name='object_list'),
     url(r'^detail/(?P<pk>[0-9]+)$', views.ThreedmodelDetail.as_view(), name='detail'),
