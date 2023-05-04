@@ -136,4 +136,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-SECRET_KEY="secret"
+SECRET_KEY="6!5s8o#hso*gnr%&g7et2d##!okbzv+=eqij-m&+uipctfhb_7"
+DEFAULT_AUTO_FIELD="django.db.models.AutoField"
