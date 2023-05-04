@@ -2,6 +2,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "geolocation"
+
 urlpatterns = [
     url(r'^districts/$', views.DC_provinceListView.as_view(), name='province_list'),
     url(r'^province/edit/(?P<pk>[0-9]+)$', views.edit_DC_provinceForm, name='edit_province'),

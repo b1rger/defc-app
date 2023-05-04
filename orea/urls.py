@@ -8,6 +8,8 @@ from defcdb import api_views
 import autocomplete_light.shortcuts as al
 al.autodiscover()
 
+app_name = "orea"
+
 router = routers.DefaultRouter()
 router.register(r'geojson', api_views.GeoJsonViewSet, basename='places')
 router.register(r'dc_finds_lithics_raw_material', api_views.DC_finds_lithics_raw_materialViewSet)
@@ -88,7 +90,7 @@ router.register(r'Finds', api_views.FindsViewSet)
 router.register(r'Interpretation', api_views.InterpretationViewSet)
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^defcdb/', include('defcdb.urls', namespace='defcdb')),

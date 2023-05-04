@@ -3,6 +3,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "images_metadata"
+
 urlpatterns = [
     url(r'^$', views.ImageThesaurusListView.as_view(), name='object_list'),
     url(r'^upload/$', views.upload_file, name='upload_file'),

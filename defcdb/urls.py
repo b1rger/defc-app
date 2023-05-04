@@ -3,6 +3,8 @@ from django.conf.urls import url
 from . import views
 #add something...
 
+app_name = "defcdb"
+
 urlpatterns = [
 url(r'^$', views.start_view, name="start"),
 url(r'^search', views.search_all, name='search_all'),
