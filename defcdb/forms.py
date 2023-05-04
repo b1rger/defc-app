@@ -4,7 +4,7 @@ import autocomplete_light
 #autocomplete_light.autodiscover()
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Field
 from django.utils.translation import ugettext_lazy as _
 from .autocomplete_light_registry import (BookAutocomplete, InstitutionAutocomplete,

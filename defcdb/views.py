@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from reversion import revisions as reversion
 from haystack.query import SearchQuerySet
 
