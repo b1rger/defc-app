@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import include, url
+from django.views.static import serve
 from rest_framework import routers
 from django.contrib import admin
 from orea.settings import base
@@ -103,7 +104,7 @@ urlpatterns = [
     url(r'^bib/', include('bib.urls', namespace='bib')),
     url(
         r'^media/(?P<path>.*)$',
-        'django.views.static.serve',
+        serve,
         {'document_root': base.MEDIA_ROOT, }, name='media_root_url'
     ),
     url(r'^image_gallery/', include('images_metadata.urls', namespace="image_gallery")),
