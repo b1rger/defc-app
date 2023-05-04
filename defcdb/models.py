@@ -71,7 +71,7 @@ class DC_region(GenericMethods):
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
     country = models.ForeignKey(
-        DC_country, blank=True, null=True, help_text="The name of the country")
+        DC_country, blank=True, null=True, help_text="The name of the country", on_delete=models.CASCADE)
 
 
 class DC_province(GenericMethods):
@@ -87,7 +87,7 @@ class DC_province(GenericMethods):
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
     region = models.ForeignKey(
-        DC_region, blank=True, null=True, help_text="The name of the country"
+        DC_region, blank=True, null=True, help_text="The name of the country", on_delete=models.CASCADE
     )
 
     def __str__(self):
@@ -275,7 +275,7 @@ class DC_finds_small_finds_type(GenericMethods):
     german_name = models.CharField(max_length=100, blank=True, null=True,
         help_text="PLEASE PROVIDE SOME HELPTEX")
     category = models.ForeignKey(DC_finds_small_finds_category, blank=True,
-        null=True)
+        null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         try:
@@ -516,13 +516,13 @@ class Site(TrackChanges):
         related_name="alternativeName")
     province = models.ForeignKey(
         DC_province, blank=True, null=True,
-        help_text="Geographical area where the site is located.", verbose_name="District")
+        help_text="Geographical area where the site is located.", verbose_name="District", on_delete=models.CASCADE)
     geographical_coordinate_reference_system = models.ForeignKey(
         DC_site_geographicalreferencesystem, blank=True,
-        null=True, help_text="Name of system uniquely determining the position of the site.")
+        null=True, help_text="Name of system uniquely determining the position of the site.", on_delete=models.CASCADE)
     coordinate_source = models.ForeignKey(
         DC_site_coordinatesource, blank=True, null=True,
-        help_text="Source providing information about the global position of site.")
+        help_text="Source providing information about the global position of site.", on_delete=models.CASCADE)
     latitude = models.DecimalField(
         max_digits=20, decimal_places=12, blank=True, null=True)
     longitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True)
@@ -533,7 +533,7 @@ class Site(TrackChanges):
         verbose_name="Authorityfile ID")
     topography = models.ForeignKey(
         DC_site_topography, blank=True,
-        null=True, help_text="Description of surface shape and features.")
+        null=True, help_text="Description of surface shape and features.", on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True,
         help_text="Free text summary account on the site.")
     exact_location = models.CharField(
@@ -573,9 +573,9 @@ class Area(TrackChanges):
         ("no", "no"),
         )
     site = models.ForeignKey(Site, blank=True, null=True,
-        help_text="The site where this area is located.")
+        help_text="The site where this area is located.", on_delete=models.CASCADE)
     area_type = models.ForeignKey(DC_area_areatype, blank=True, null=True,
-        help_text="The type of the area.")
+        help_text="The type of the area.", on_delete=models.CASCADE)
     area_nr = models.CharField(max_length=45, blank=True, null=True,
         help_text="An established identifier for this area",
         verbose_name="Area ID")
@@ -643,7 +643,7 @@ class Area(TrackChanges):
         help_text="Additional information on the period not covered in any other field.",)
 #settlement fields
     settlement_type = models.ForeignKey(DC_area_settlementtype, blank=True, null=True,
-        help_text="Classification of settlement.")
+        help_text="Classification of settlement.", on_delete=models.CASCADE)
     settlement_structure = models.ManyToManyField(DC_area_settlementstructure,
         blank=True, help_text="Layout of settlement.")
     settlement_construction_type = models.ManyToManyField(DC_area_constructiontype,
@@ -663,7 +663,7 @@ class Area(TrackChanges):
 #cave&rockshelters fields
     cave_rockshelters_type = models.ForeignKey(DC_area_caverockshelterstype,
         verbose_name="Cave/rockshelters type",
-        blank=True, null=True,help_text="Type of cave/rockshelter.")
+        blank=True, null=True,help_text="Type of cave/rockshelter.", on_delete=models.CASCADE)
     cave_rockshelters_human_remains = models.CharField(max_length=3, blank=True,
         null=True, choices=HUMANREMAINS,
         help_text="Any human remains found in this cave or rockshelter?")
@@ -672,7 +672,7 @@ class Area(TrackChanges):
         help_text="Type of evidence indicating occupation found.")
 #quarry fields
     quarry_exploitation_type = models.ForeignKey(DC_area_exploitationtype,
-        blank=True, null=True, help_text="Type of extraction.")
+        blank=True, null=True, help_text="Type of extraction.", on_delete=models.CASCADE)
     quarry_raw_material = models.ManyToManyField(DC_area_rawmaterial,
         blank=True, help_text="Resource that was extracted.")
 #cemetery/graves fields
@@ -739,15 +739,15 @@ class Finds(TrackChanges):
         ("No", "No"),
         )
     area = models.ForeignKey(Area, blank=True, null=True,
-        help_text="Location of the find.")
+        help_text="Location of the find.", on_delete=models.CASCADE)
     research_event = models.ForeignKey(ResearchEvent, blank=True, null=True,
-        help_text="Project / Research the finds are related to.")
+        help_text="Project / Research the finds are related to.", on_delete=models.CASCADE)
     finds_type = models.ForeignKey(DC_finds_type, blank=True, null=True,
-        help_text="Category of finds.")
+        help_text="Category of finds.", on_delete=models.CASCADE)
 # small finds properties
     small_finds_category = models.ForeignKey(DC_finds_small_finds_category,
         blank=True, null=True,
-        help_text="Superordinate class of small find.")
+        help_text="Superordinate class of small find.", on_delete=models.CASCADE)
     small_finds_type = models.ManyToManyField(DC_finds_small_finds_type,
         blank=True, help_text="What kind of small find is described.")
 # Botany
@@ -759,7 +759,7 @@ class Finds(TrackChanges):
         blank=True, help_text="How the zoological sample / find is categorised.")
     animal_remains_completeness = models.ForeignKey(
         DC_finds_animal_remains_completeness,
-        blank=True, null=True, help_text="How much was present (complete or part).")
+        blank=True, null=True, help_text="How much was present (complete or part).", on_delete=models.CASCADE)
     animal_remains_part = models.ManyToManyField(
         DC_finds_animal_remains_part,
         blank=True, help_text="Which part was present.")
@@ -785,7 +785,7 @@ class Finds(TrackChanges):
         verbose_name="Obsidian amount (%)")
 # Pottery
     pottery_form = models.ForeignKey(DC_finds_pottery_form,
-        blank=True, null=True, help_text="The form of the pottery.")
+        blank=True, null=True, help_text="The form of the pottery.", on_delete=models.CASCADE)
     pottery_detail = models.ManyToManyField(DC_finds_pottery_detail,
         blank=True, help_text="Preserved part of the pottery.")
     pottery_decoration = models.ManyToManyField(DC_finds_pottery_decoration,
@@ -794,7 +794,7 @@ class Finds(TrackChanges):
         help_text="")
 # common fields
     amount = models.ForeignKey(DC_finds_amount, blank=True, null=True,
-        help_text="Number of pieces within the category.")
+        help_text="Number of pieces within the category.", on_delete=models.CASCADE)
     material = models.ManyToManyField(DC_finds_material, blank=True,
         help_text="What was the small find made of.")
     confidence = models.CharField(max_length=50, blank=True, null=True,
