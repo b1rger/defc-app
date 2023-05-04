@@ -479,7 +479,7 @@ def user_logout(request):
 
 
 def start_view(request):
-    context = RequestContext(request)
+    context = RequestContext(request).flatten()
     return render(request, 'webpage/index.html', context)
 
 

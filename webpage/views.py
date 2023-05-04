@@ -11,94 +11,94 @@ from .models import Event
 
 # Create your views here.
 def imprint(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/imprint.html', context)
 
 
 def homepage(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/index.html', context)
 
 
 def about(request):
-	#context = RequestContext(request)
+	#context = RequestContext(request).flatten()
 	context = {}
 	context["event_list"] = Event.objects.all()
 	return render(request, 'webpage/about.html', context)
 
 
 def terms_of_use(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/terms_of_use.html', context)
 
 
 def cukurici_movie_content(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/cukurici_movie_content.html', context)
 
 
 def cukurici_movie_german_version(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/cukurici_movie_german_version.html', context)
 
 
 def ada_tepe_movie_content(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/ada_tepe_movie_content.html', context)
 
 
 def ada_tepe_movie_german_version(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/ada_tepe_movie_german_version.html', context)
 
 
 def blog_main(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_main.html', context)
 
 
 def blog_post_01(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_post_01.html', context)
 
 
 def blog_post_02(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_post_02.html', context)
 
 
 def blog_post_03(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_post_03.html', context)
 
 
 def blog_post_04(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_post_04.html', context)
 
 
 def blog_post_05(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/blog_post_05.html', context)
 
 
 def defc2rdf_demo(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/defc2rdf_demo.html', context)
 
 
 def mapping2cidoc(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/mapping2cidoc.html', context)
 
 
 def defc_thesaurus(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/defc_thesaurus.html', context)
 
 
 def chronology_table(request):
-	context = RequestContext(request)
+	context = RequestContext(request).flatten()
 	return render(request, 'webpage/chronology_table.html', context)
 
 
