@@ -320,6 +320,7 @@ class MapListFilter(django_filters.FilterSet):
     class Meta:
         model = Site
         form = SiteFilterForm
+        exclude = []
 
 
 class SiteListFilter(django_filters.FilterSet):
